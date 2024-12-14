@@ -18,7 +18,9 @@ class Player
     until (1..7).include?(column)
       puts "Player #{@color.capitalize} #{@symbol} , please enter the column [1-7], where you want to insert your piece:"
       column = $stdin.gets.chomp.to_i
-      insert_call = cage.insert_piece(Integer(column) - 1, @symbol)
+      next unless (1..7).include?(column)
+
+      insert_call = cage.insert_piece(column - 1, @symbol)
       column = -1 unless insert_call.is_a?(Array) || insert_call[0] == 'W'
     end
 
